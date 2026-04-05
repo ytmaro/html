@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>FUNKILL</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #d3d3d3;
+        overflow-x: hidden;
+    }
+
+    /* 햄버거 버튼 */
+    .menu-btn {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        font-size: 30px;
+        cursor: pointer;
+        z-index: 3;
+    }
+
+    /* 중앙 컨텐츠 */
+    .content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        text-align: center;
+        flex-direction: column;
+    }
+
+    .title {
+        font-size: 60px;
+        font-weight: bold;
+        color: black;
+    }
+
+    .sub {
+        font-size: 25px;
+        font-weight: bold;
+        color: gray;
+    }
+
+    /* 업데이트 박스 */
+    .update-box {
+        background: white;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    /* 오버레이 */
+    .overlay {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.4);
+        top: 0;
+        left: 0;
+        opacity: 0;
+        visibility: hidden;
+        transition: 0.3s;
+        z-index: 1;
+    }
+
+    .overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* 사이드 메뉴 */
+    .side-menu {
+        position: fixed;
+        top: 0;
+        right: -320px;
+        width: 300px;
+        height: 100%;
+        background: white;
+        border-radius: 20px 0 0 20px;
+        padding: 40px 20px;
+        box-shadow: -5px 0 10px rgba(0,0,0,0.2);
+        transition: 0.3s;
+        z-index: 2;
+    }
+
+    .side-menu.active {
+        right: 0;
+    }
+
+    .menu-item {
+        font-size: 22px;
+        font-weight: bold;
+        color: gray;
+        margin: 20px 0;
+        cursor: pointer;
+    }
+
+    .menu-item:hover {
+        color: black;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="menu-btn" onclick="toggleMenu()">☰</div>
+
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+<div class="side-menu" id="menu">
+    <div class="menu-item" onclick="goHome()">홈</div>
+    <div class="menu-item" onclick="contact()">문의하기</div>
+    <div class="menu-item" onclick="updatePage()">게임 업데이트</div>
+    <div class="menu-item" onclick="statusPage()">게임 상태</div>
+</div>
+
+<div class="content" id="content">
+    <div class="title">FUNKILL</div>
+</div>
+
+<script>
+function toggleMenu() {
+    document.getElementById("menu").classList.toggle("active");
+    document.getElementById("overlay").classList.toggle("active");
+}
+
+/* 홈 */
+function goHome() {
+    document.getElementById("content").innerHTML =
+        `<div class="title">FUNKILL</div>`;
+    toggleMenu();
+}
+
+/* 문의하기 */
+function contact() {
+    document.getElementById("content").innerHTML =
+        `<div class="sub">개발중</div>`;
+    toggleMenu();
+}
+
+/* 업데이트 */
+function updatePage() {
+    document.getElementById("content").innerHTML =
+        `<div class="update-box">
+            <div class="title">FUNKILL 개발중</div>
+            <div class="sub">FUNKILL is realese in 2026.04.03 ~ 2026.8.17!</div>
+        </div>`;
+    toggleMenu();
+}
+
+/* 게임 상태 → 외부 이동 */
+function statusPage() {
+    window.location.href = "https://status.funkill.kro.kr";
+}
+</script>
+
+</body>
+</html>
